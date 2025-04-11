@@ -1,0 +1,154 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: url('background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+#bg-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.main {
+  max-width: 1080px;
+  margin: 40px auto 0;
+  padding: 20px;
+}
+
+.logo {
+  width: 400px;
+  display: block;
+  margin: 0 auto;
+}
+
+.subhead {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 10px 0 30px;
+}
+
+.sound-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.sound-item {
+  text-align: center;
+}
+
+.sound-item button {
+  display: block;
+  margin: 10px auto 5px;
+}
+
+.progress-bar {
+  background: white;
+  height: 5px;
+  margin-top: 5px;
+  transition: width 0.3s ease;
+}
+
+.download-btn {
+  display: block;
+  text-align: center;
+  background: white;
+  color: black;
+  padding: 10px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.large-video video,
+.small-videos video {
+  width: 100%;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.stills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+}
+
+.stills-grid img {
+  width: 100%;
+  cursor: pointer;
+}
+
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+  z-index: 2000;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+}
+
+.quotes-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.quotes-grid div {
+  position: relative;
+}
+
+.quotes-grid img {
+  width: 100%;
+}
+
+.quotes-grid p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.credits {
+  background: black;
+  padding: 20px;
+}
+
+.credits-inner {
+  width: 400px;
+  margin: 0 auto;
+}
+
+.credit-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.credit-line::before {
+  content: ".................................................................................";
+  flex: 1;
+  margin: 0 5px;
+  overflow: hidden;
+  white-space: nowrap;
+}
