@@ -50,7 +50,7 @@
 
         .custom-underline {
             text-decoration: underline;
-            text-decoration-color: white;
+            /* text-decoration-color: white; */
             text-decoration-thickness: 4px;
             text-underline-offset: 8px;
         }
@@ -81,6 +81,18 @@
             width: 100%;
             height: auto;
         }
+		
+		.media-contacts {
+		    position: absolute;
+            top: 0;
+			align-items: center
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 10;
+
+			
+		}
 
         /* SFX Section */
         .sfx-section {
@@ -319,6 +331,22 @@
             margin-bottom: 10px;
         }
 
+		.neon-text {
+  		  font-size: 4rem;
+ 		   color: #fff;
+ 		   text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
+ 		   animation: glow 1.5s infinite alternate;
+		}
+
+		@keyframes glow {
+    		0% {
+        		text-shadow: 0 0 5px #ff005e, 0 0 10px #ff005e, 0 0 20px #ff005e, 0 0 40px #ff005e, 0 0 80px #ff005e;
+    		}
+   	    	 100% {
+        		text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 40px #00d4ff, 0 0 80px #00d4ff, 0 0 160px #00d4ff;
+    		}
+		}
+		
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
@@ -389,7 +417,7 @@
             width: 80%;
         }
 			
-			
+
 			
 			
         }
@@ -401,6 +429,8 @@
 <body>
     <div class="header-banner">
         <video autoplay loop muted playsinline src="media/header.mp4"></video>
+		<div class="media-contacts"><p>MEDIA INQUIRIES: NEIL WALSHE / 0403 852 056 / NEILJWALSHE@GOOGLEMAIL.COM</p></div>
+
         <img src="media/logo.png" alt="The Unheard Sound Logo">
     </div>
 
@@ -439,15 +469,15 @@
 
     <div class="results-section">
         <div class="container">
-            <h2>All players were <span class="custom-underline">more aware</span> of their losses<br><br>
-				80% were <span class="custom-underline">less motivated</span> to keep playing<br><br>
-				Game <span class="custom-underline">enjoyment dropped</span> by 40%</h2>
+            <h2>Everyone became <span class="custom-underline" style="color:red">more aware</span> of losses<br><br>
+				80% became <span class="custom-underline" style="color:yellow">less motivated</span> to keep playing<br><br>
+				Game <span class="custom-underline" style="color:deepskyblue">enjoyment dropped</span> by 40%</h2>
         </div>
     </div>
 
     <div class="photo-section">
         <div class="container">
-			<h1>Photos</h1>
+			<h1><div class="neon-container"><span class="neon-text">Photos</span></div></h1>
             <div class="thumbnails-grid">
                 <img src="media/stills1-1.png" alt="Still 1" class="thumbnail" data-large="media/stills1-1.png">
                 <img src="media/stills1-2.png" alt="Still 2" class="thumbnail" data-large="media/stills1-2.png">
@@ -478,7 +508,7 @@
 	
     <div class="behind-scenes-section">
         <div class="container">
-            <h2>Behind The Scenes</h2>
+            <h2><div class="neon-container"><span class="neon-text">Behind The Scenes</span></div></h2>
             <div class="video-container">
                 <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_ID?h=YOUR_HASH&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" width="1080" height="608" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="YOUR_VIDEO_TITLE"></iframe>
                 <script src="https://player.vimeo.com/api/player.js"></script>
@@ -488,13 +518,14 @@
 
     <div class="history-section">
         <div class="container">
-            <h2>Why am I doing this?<br>A close family member lost over 150K to the pokies. They had three young children and looked after the family finances. Over the course of one year the pokies took their house deposit, their children's bank accounts, and maxed out all their credit cards. The family soon broke-up.  it’s affected them ever since.</h2>
+            <h2>Why am I doing this?<br>A close family member lost over 150K to the pokies. They had three young children and looked after the family finances. Over the course of one year the pokies took their house deposit, their children's bank accounts, and maxed out all their credit cards. The family soon broke-up.  it’s affected them ever since.</h2><br><br>
+			<p>CONTACT: NEIL WALSHE / 0403 852 056 / NEILJWALSHE@GOOGLEMAIL.COM</p>
         </div>
     </div>
 
     <div class="credits-section">
       <div class="container">
-           <h1>Credits</h1>
+		  <h1><div class="neon-container"><span class="neon-text">Credits</span></div></h1>
             <p>
                 Creative Director: Neil Walshe<br>
                 Sound: Rumble Studio, Anthony Aston, Jeremy, Dexter Cave<br>
