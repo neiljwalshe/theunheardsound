@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Unheard Sound</title>
+    <style>
+        @font-face {
+            font-family: 'wilma-baseregular';
+            /* src: url('path/to/wilma-baseregular.woff2') format('woff2'),  <--  Path to your font file */
+            /* url('path/to/wilma-baseregular.woff') format('woff');    <--  Path to your font file */
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'wilma-baseregular', Arial, sans-serif; /* Arial as fallback */
+			font-weight: normal;
+            font-style: normal;
+            color: white;
+            line-height: 1.4;
+        }
+
+        /* General Styles */
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 3em;
+            line-height: 1;
+            color: white;
+        }
+
+        .custom-underline {
+            text-decoration: underline;
+            text-decoration-color: white;
+            text-decoration-thickness: 4px;
+            text-underline-offset: 8px;
+        }
+
+        p {
+            line-height: 1.4;
+            color: white;
+        }
+
+        .vote-button {
+            width: 200px;
+            background-color: white;
+            color: black;
+            border-radius: 5px;
+            text-transform: uppercase;
+            font-size: 1em;
+            cursor: pointer;
+            padding: 10px 0;
+            text-align: center;
+            transition: background-color 0.3s, color 0.3s;
+            border: none;
+            margin-top: 10px;
+        }
+
+        .vote-button:hover, .vote-button.active {
+            background-color: yellow;
+            color: black;
+        }
+
+        /* Header Banner Section */
+        .header-banner {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header-banner video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .header-banner-content {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .header-banner-logo {
+            width: 600px;
+            max-width: 100%;
+        }
+
+        /* SFX Section */
+        .sfx-section {
+            background-color: black;
+            padding: 50px 0;
+            text-align: left;
+        }
+
+        .sfx-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 200px); /* 200px + 20px gap */
+            gap: 20px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .sfx-icon {
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .sfx-icon:hover {
+            opacity: 0.7;
+        }
+
+        .download-link {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            color: white;
+           /* text-decoration: none; */
+			text-decoration: underline;
+            text-decoration-color: white;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            font-size: 1.2em;
+        }
+
+        /* Video Section */
+        .video-section {
+            background-color: black;
+            padding: 50px 0;
+            text-align: left;
+        }
+
+        .video-container {
+            margin-top: 20px;
+        }
+
+        .video-container iframe {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16/9;
+            max-width: 1080px;
+        }
+
+        /* Results Section */
+        .results-section {
+            background-color: black;
+            padding: 50px 0;
+            text-align: left;
+        }
+
+        /* Photo Section */
+        .photo-section {
+			background-color: black;
+
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .stills-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+            max-width: 1080px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stills-grid img {
+            width: 100%;
+            height: auto;
+            border: 10px solid #fff;
+            box-sizing: border-box;
+        }
+
+        .photo-section .quote-image-container {
+            margin-top: 20px;
+            position: relative;
+        }
+
+        .photo-section img {
+            width: 100%;
+            height: auto;
+            max-width: 1080px;
+            display: block;
+            margin: 20px auto 0 auto;
+        }
+
+        .photo-section .quote-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5em;
+            text-align: center;
+            width: 80%;
+        }
+
+        /* Behind the Scenes Section */
+        .behind-scenes-section {
+            background-color: black;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .behind-scenes-section h2{
+            text-align: left;
+        }
+
+        /* History Section */
+        .history-section {
+           background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('media/neil-walshe-creative-director.jpg');  /*  Path to your image */
+			
+            background-size: cover;
+            background-position: center;
+            padding: 50px 0;
+			/*filter: brightness(80%);*/
+
+        }
+
+        .history-section-content {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .history-section h2{
+            text-align: left;
+        }
+
+        /* Credits Section */
+        .credits-section {
+            background-color: black;
+            padding: 50px 0;
+            text-align: left;
+        }
+
+        .credits-section h2 {
+            text-transform: uppercase;
+            font-size: 2em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .sfx-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sfx-icon {
+                width: 100%;
+                height: auto;
+            }
+            .stills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-banner-logo {
+                width: 90%;
+            }
+            .sfx-grid {
+                grid-template-columns: 1fr;
+            }
+             .stills-grid {
+                grid-template-columns: 1fr;
+            }
+            h1{
+                font-size: 2em;
+            }
+            .photo-section .quote-overlay{
+                font-size: 1.2em;
+            }
+        }
+    </style>
+	<link rel="stylesheet" href="css/stylesheet.css" type="text/css" charset="utf-8" />
+
+</head>
+<body>
+    <header class="header-banner">
+        <video autoplay loop muted>
+            <source src="media/header.mp4" type="video/mp4">  Your browser does not support the video tag.
+        </video>
+        <div class="header-banner-content">
+            <img src="media/logo.png" alt="The Unheard Sound" class="header-banner-logo">  </div>
+    </header>
+
+    <section class="sfx-section">
+        <div class="container">
+            <h1>Poker Machines don't have losing sounds, so we created them</h1>
+            <div class="sfx-grid">
+                </div>
+            <a href="media/the-unheard-sounds.zip" class="download-link">Download sound files</a>  </div>
+    </section>
+
+    <section class="video-section">
+        <div class="container">
+            <h1>Then we re-programmed a real poker machine and tested it on real players</h1>
+            <div class="video-container">
+                <iframe src="https://player.vimeo.com/video/YOUR_VIMEO_VIDEO_ID" frameborder="0"  allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <p class="download-link">Download video</p>  </div>
+    </section>
+
+    <section class="results-section">
+        <div class="container">
+            <h1>
+                All players were <span class="custom-underline">more aware</span> of their losses<br><br>
+                80% were <span class="custom-underline">less motivated</span> to keep playing<br><br>
+                Game <span class="custom-underline">enjoyment dropped</span> by 40%
+            </h1>
+        </div>
+    </section>
+
+    <section class="photo-section">
+        <div class="container">
+            <h1>Photos</h1>
+            <div class="stills-grid">
+                </div>
+             <div id="lightbox" class="lightbox">
+                <span id="close-lightbox" class="close-button">×</span>
+                <img id="lightbox-image" src="" alt="Large Still Image">
+            </div>
+            <div class="quote-image-container">
+                <img src="media/image1.jpg" alt="Quote 1">  <div class="quote-overlay">
+                    "The Unheard Sound is a powerful and evocative exploration of the sounds that often go unnoticed in our daily lives."
+                </div>
+            </div>
+            <div class="quote-image-container">
+                <img src="media/image2.jpg" alt="Quote 2">  <div class="quote-overlay">
+                    "This project challenges us to listen more deeply to the world around us and to consider the impact of these often-ignored sounds."
+                </div>
+            </div>
+            <div class="quote-image-container">
+                <img src="media/image3.jpg" alt="Quote 3">  <div class="quote-overlay">
+                    "A thought-provoking and innovative work that sheds light on the hidden soundscapes of our modern world."
+                </div>
+            </div>
+            <p class="download-link">Download photos</p>  </div>
+    </section>
+
+    <section class="behind-scenes-section">
+        <div class="container">
+            <h1>Behind The Scenes</h1>
+            <div class="video-container">
+                <iframe src="https://player.vimeo.com/video/YOUR_BEHIND_THE_SCENES_VIDEO_ID" frameborder="0"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="history-section">
+        <div class="history-section-content">
+            <h1>
+                <span> Why am I doing this?<br>
+                My sister-in-law lost over 150K to the pokies within one year. She was married to my brother and they had three
+                kids. She looked after the family finances, so my brother only found out when he couldn't pay for petrol one
+                morning. She had lost their house deposit, drained their three kids bank accounts, and maxed out all the
+                credit cards. The family soon broke up and it's affected their lives ever since.</span>
+            </h1>
+        </div>
+    </section>
+
+    <section class="credits-section">
+        <div class="container">
+            <h1>Credits</h1>
+            <p>
+                Creative Director: Neil Walshe<br>
+                Sound: Rumble Studio, Anthony Aston, Jeremy, Dexter Cave<br>
+                Director: Milos Mlynarik<br>
+				Assitant Director: Kota Sato, Justin Solomons<br>
+				Stylist: Emma Cotterill<br>
+				Creative Consultants: Mariah Ferrer, Michael Harris, Ryan Greves, Ben Rae, Parissa<br>
+				Data Wragler: hWoodsee<br>
+				Gaffer: Steve, Alan Fraser<br>
+				Editor: James Tyrrell, Optika<br>
+			</p>
+            <p>&nbsp;</p>
+        </div>
+    </section>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyADl8e12o050x-AV4MMgsOE6B7NRlzOClw",
+    authDomain: "the-unheard-sound.firebaseapp.com",
+    projectId: "the-unheard-sound",
+    storageBucket: "the-unheard-sound.firebasestorage.app",
+    messagingSenderId: "931609476844",
+    appId: "1:931609476844:web:599e67729d7992450cafc9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+	
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const sfxGrid = document.querySelector('.sfx-grid');
+            const audioPlayers = {};
+            const firebaseConfig = {
+                //  Add your firebase config here
+                //  apiKey: "YOUR_API_KEY",
+                //  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+                //  databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+                //  projectId: "YOUR_PROJECT_ID",
+                //  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+                //  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+                //  appId: "YOUR_APP_ID",
+                //  measurementId: "YOUR_MEASUREMENT_ID"
+            };
+
+            // Initialize Firebase
+            if (firebaseConfig.apiKey) { //check if api key exists
+                firebase.initializeApp(firebaseConfig);
+                const database = firebase.database();
+                //fetchInitialVotes();
+            }
+
+            // Generate SFX Icons and Vote Buttons
+            for (let i = 1; i <= 10; i++) {
+                const sfxItem = document.createElement('div');
+                sfxItem.classList.add('sfx-item');
+                sfxItem.style.textAlign = 'center';
+
+                const icon = document.createElement('img');
+                icon.src = `media/sfx-icon${i}-off.png`;  //  Path to your image files
+                icon.classList.add('sfx-icon');
+                icon.dataset.soundId = i;
+
+                const voteButton = document.createElement('button');
+                voteButton.classList.add('vote-button');
+                voteButton.textContent = 'VOTE';
+                voteButton.dataset.soundId = i;
+
+                const voteCountDisplay = document.createElement('p');
+                voteCountDisplay.classList.add('vote-count');
+                voteCountDisplay.textContent = '0 votes';
+                voteCountDisplay.dataset.soundId = i;
+
+                const deviceType = getDeviceType();
+                if (deviceType === 'desktop') {
+                    icon.addEventListener('mouseover', () => playSfx(i));
+                    icon.addEventListener('mouseout', () => stopSfx(i));
+                } else {
+                    icon.addEventListener('click', () => playSfx(i));
+                }
+
+                sfxItem.appendChild(icon);
+                sfxItem.appendChild(voteButton);
+                sfxItem.appendChild(voteCountDisplay);
+                sfxGrid.appendChild(sfxItem);
+
+                audioPlayers[`sfx${i}`] = new Audio(`media/sfx${i}.wav`);  //  Path to your sound files
+            }
+
+            // Stills Lightbox
+            const stillsGrid = document.querySelector('.stills-grid');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            const closeLightbox = document.getElementById('close-lightbox');
+            const imageSources = [
+                "media/stills-large1-1.png",  "media/stills-large1-2.png",  "media/stills-large1-3.png",
+                "media/stills-large1-4.png",  "media/stills-large1-5.png",
+                "media/stills1-6.png", "media/stills1-7.png", "media/stills1-8.png", "media/stills1-9.png", "media/stills1-10.png",
+                "media/stills1-11.png", "media/stills1-12.png", "media/stills1-13.png", "media/stills1-14.png", "media/stills1-15.png"
+            ];
+
+            for (let i = 1; i <= 15; i++) {
+                const still = document.createElement('img');
+                still.src = `media/stills1-${i}.png`;
+                still.alt = `Still ${i}`;
+                still.dataset.index = i - 1;
+                stillsGrid.appendChild(still);
+            }
+
+            stillsGrid.addEventListener('click', (event) => {
+                const target = event.target.closest('img');
+                if (target) {
+                    const index = parseInt(target.dataset.index);
+                    if (index >= 0 && index < imageSources.length) {
+                        lightboxImage.src = imageSources[index];
+                        lightbox.style.display = 'flex';
+                    }
+                }
+            });
+
+            closeLightbox.addEventListener('click', () => {
+                lightbox.style.display = 'none';
+                lightboxImage.src = '';
+            });
+
+            // Event listener for vote buttons
+            sfxGrid.addEventListener('click', function (event) {
+                const button = event.target.closest('.vote-button');
+                if (button) {
+                    const soundId = button.dataset.soundId;
+                    handleVote(soundId);
+                }
+            });
+
+            function playSfx(soundId) {
+                const sfx = audioPlayers[`sfx${soundId}`];
+                sfx.currentTime = 0;
+                sfx.play();
+            }
+
+            function stopSfx(soundId) {
+                const sfx = audioPlayers[`sfx${soundId}`];
+                sfx.pause();
+                sfx.currentTime = 0;
+            }
+
+            // Vote handling and Firebase integration (Placeholder)
+            const userVotes = {};
+            function handleVote(soundId) {
+                const userId = getUserId();
+                if (userVotes[userId] && userVotes[userId][soundId]) {
+                    alert("You can only vote once per sound.");
+                    return;
+                }
+
+                userVotes[userId] = userVotes[userId] || {};
+                userVotes[userId][soundId] = true;
+
+                const voteButton = document.querySelector(`[data-sound-id="${soundId}"].vote-button`);
+                voteButton.textContent = 'Voted!';
+                voteButton.classList.add('active');
+
+                // Placeholder for Firebase
+                if (firebaseConfig.apiKey) {
+                    saveVoteToFirebase(soundId);
+                }
+
+                // Update the display immediately (you'd likely get the actual count from the server)
+                let voteCountDisplay = document.querySelector(`[data-sound-id="${soundId}"].vote-count`);
+                let currentVotes = parseInt(voteCountDisplay.textContent.replace(' votes', '')) || 0;
+                currentVotes++;
+                voteCountDisplay.textContent = `${currentVotes} votes`;
+            }
+
+            // Placeholder for Firebase function
+            function saveVoteToFirebase(soundId) {
+                if (!firebaseConfig.apiKey) return;
+                const voteRef = firebase.database().ref(`votes/${soundId}`);
+                voteRef.set(1); // Or increment the existing value
+            }
+
+            function getUserId() {
+                let userId = localStorage.getItem('userId');
+                if (!userId) {
+                    userId = 'user_' + Math.random().toString(36).substring(2, 15);
+                    localStorage.setItem('userId', userId);
+                }
+                return userId;
+            }
+
+            function getDeviceType() {
+                const ua = navigator.userAgent;
+                if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(ua)) {
+                    return "tablet";
+                }
+                if (/Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-.*EC|Windows Phone/i.test(ua)) {
+                    return "mobile";
+                }
+                return "desktop";
+            }
+        });
+    </script>
+</body>
+</html>
